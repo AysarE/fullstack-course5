@@ -11,20 +11,15 @@
 
       $scope.checkLunchSize = function () {
 
-        if ($scope.lunchList.length == 0)
-        {
+        if ($scope.lunchList.length == 0) {
             $scope.message = "Please enter data first";
         }
-        else
-        {
+        else {
             var lunchArray = $scope.lunchList.split(",");
-
-            if (lunchArray.length > 3)
-            {
+            if (lunchArray.length > 3) {
                 $scope.message = "Too much!";
             }
-            else
-            {
+            else {
                 $scope.message = "Enjoy!";
             }
         }
