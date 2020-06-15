@@ -1,5 +1,23 @@
+<!-- 
+  DONE 1. <script> for angular-js before </body>
+  DONE 2. index.html: ng-app on body element: LunchCheck
+  DONE 3. app.js: declare Angular module: LunchCheck
+  DONE 4. index.html: create textbox, button and message placeholder
+  DONE 5. index.html: create div that holds controls above and annotate with Angular controller: LunchCheckController
+  DONE 6. app.js: Declare+Define LunchCheckController
+  DONE 7. app.js: Inject $scope into the controller to prevent minification
+  DONE 8. app.js: Make sure no leakage to global scope (IIFE): 'use strict'
+  9. Implement general idea
+        - Comma-separated items that they eat for lunch
+        - "Check if too much" button
+        - Logic: 
+             If the number of items is less than or equal to 3, message should show up saying "Enjoy!"
+             If number is greater than 3, message "Too much!" should show up under textbox
+             If textbox is empty and user clicks button, message should say "Please enter data first"
+                 Empty defined as "" or whitespace. Hint (ng-model already trims whitespace) -->
+
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app='LunchCheck'>
   <head>
     <title>Lunch Checker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,22 +26,27 @@
       .message { font-size: 1.3em; font-weight: bold; }
     </style>
   </head>
+  <script src="angular.min.js"></script>
+  <script src="app.js"></script>
 <body>
-   <div class="container">
+   <div class="container" ng-controller="LunchCheckController">
      <h1>Lunch Checker</h1>
 
          <div class="form-group">
              <input id="lunch-menu" type="text"
              placeholder="list comma separated dishes you usually have for lunch"
-             class="form-control">
+             class="form-control",
+             ng-model="lunchList">
          </div>
          <div class="form-group">
-             <button class="btn btn-default">Check If Too Much</button>
+             <button class="btn btn-default"
+             ng-click="checkLunchSize()">Check If Too Much</button>
          </div>
          <div class="form-group message">
            <!-- Your message can go here. -->
+           {{lunchList}}
+           {{message}}
          </div>
    </div>
-
 </body>
 </html>
